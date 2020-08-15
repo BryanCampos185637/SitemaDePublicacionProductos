@@ -1,0 +1,97 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registro</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+        <style >
+        body {
+            background-color: #050505;
+        }
+        .formulario{
+            margin-top:50px;
+        }
+        .card {
+            color: #e3e3e3;
+            background-color: #242527;
+            border-radius: 8px;
+            box-shadow: 0px 0px 6px rgba(0,0,0,0.15);
+        }
+
+            .card:hover {
+                box-shadow: 0px 0px 6px rgba(0,0,0,0.50);
+            }
+
+        .btn {
+            border-radius: 30px;
+        }
+            h1, label, span, h3, h2, h5, table, h4, tbody {
+                color: #e3e3e3 !important;
+            }
+        .form-control {
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <div class="formulario">
+                    <form class="card" id="frmRegistro">
+                        <div class="card-body">
+                            <h3>Formulario de registro.</h3>
+                            <div id="mensajeVacios"></div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Nombres:</label>
+                                        <input type="text" placeholder="Ingrese sus nombres" id="txtNombre" class="form-control requerido data" autofocus name="Nombre" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Apellidos:</label>
+                                        <input type="text" placeholder="Ingrese sus apellidos" id="txtApellido" class="form-control requerido data" name="Apellidos" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Correo gmail:</label>
+                                        <input type="email" placeholder="Ingrese un correo" class="form-control requerido data" name="Correo" id="correoGmail" required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Nombre usuario:</label>
+                                        <input type="text" placeholder="Ingrese un usuario" class="form-control requerido data" name="Nombreusuario" id="txtUsuario" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contraseña:</label>
+                                        <input type="password" placeholder="Ingrese una contraseña" id="txtContra" class="form-control requerido data" name="Contraseña" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefono celular:</label>
+                                        <input type="number" id="txtTel" placeholder="Ingrese su telefono celular" maxlength="8" class="form-control requerido data" name="Telefonocelular" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <a href="~/Vendedor/index" class="btn btn-danger">Regresar</a>
+                                    <input type="submit" value="Registrar" class="btn btn-primary" id="btnRegistrar" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+    <script src="~/js/funcionesGenericas.js"></script>
+    <script src="~/js/PeticionesAJAX/registrarVendedor.js"></script>
+</body>
+</html>

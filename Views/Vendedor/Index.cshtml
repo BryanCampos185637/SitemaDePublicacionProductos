@@ -1,0 +1,92 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #050505;
+        }
+        .card {
+            margin-top: 30px;
+            color: #e3e3e3;
+            background-color: #242527;
+            border-radius: 8px;
+            box-shadow: 0px 0px 6px rgba(0,0,0,0.15);
+        }
+            .card:hover {
+                box-shadow: 0px 0px 6px rgba(0,0,0,0.50);
+            }
+        .btn {
+            border-radius: 30px;
+        }
+
+        .form-control {
+            border-radius: 30px;
+        }
+    </style>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</head>
+<body class="">
+    <div class="container">
+        <br />
+        <div class="row">
+            <div class="col-12"> <center><h4 style="color:#e3e3e3">COMPRATODO.COM</h4></center></div>
+            <div class="col-lg-4 col-md-4 col-sm-12"></div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card">
+                    <div class="text-center m-1">
+                        <h3>Inicia sesion</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="mensajeVacios" class="text-center"></div>
+                        <div class="form-group">
+                            <label>Nombre usuario:</label>
+                            <input type="text" class="form-control requerido" id="txtUser" autofocus placeholder="Ingrese su nombre de usuario" />
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña:</label>
+                            <input type="password" class="form-control requerido" id="txtPass" placeholder="Ingrese su contraseña" />
+                        </div>
+                        <div class="form-group">
+                            <input type="button" class="btn btn-primary btn-block mb-1" id="btnEntrar" value="Entrar" />
+                            <input type="button" class="btn btn-danger btn-block" id="btnRegresar" value="Regresar" />
+                            <div class="text-center">
+                                <span>No tienes cuenta </span><a href="~/Vendedor/Registro">registrate aqui.</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12"></div>
+        </div>
+    </div>
+    <!-- Modal recuperar contraseña-->
+    <div class="modal fade" id="modalReporte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="contenido">
+                        <div class="form-group">
+                            <label>Escriba su nombre usuario</label>
+                        </div>
+                    </div>
+                </div>
+                <!--footer-->
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" id="btnCerrarModal" value="Cancelar" />
+                    <input type="button" class="btn btn-primary" id="btnEnviarReporte" onclick="denunciarPublicacion()" value="Denunciar" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/funcionesGenericas.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/login.js"></script>
+</body>
+</html>

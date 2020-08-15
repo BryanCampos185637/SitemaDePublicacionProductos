@@ -1,0 +1,32 @@
+﻿body {
+    background-color: #050505;
+}
+
+.navbar, .card, .modal-content, alertify-dialog {
+    background-color: #242527 !important;
+    border-radius: 8px;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.15);
+}
+
+table.dataTable, tbody, tr {
+    background-color: #242527 !important;
+}
+
+h1, label, span, h3, h2, h5, table, h4, tbody {
+    color: #e3e3e3 !important;
+}
+
+input, textarea, select,.btn,.badge {
+    border: 2px;
+    border-radius:30px !important;
+}
+
+.dataTables_info {
+    color: #e3e3e3 !important;
+}
+.alertify-button-cancel {
+    background: #FE1A00 !important;
+}
+.alertify-button-ok:hover {
+    background: #3B7808 !important;
+}

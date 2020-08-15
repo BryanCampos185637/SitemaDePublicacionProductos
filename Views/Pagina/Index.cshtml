@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewData["Title"] = "Pagina";
+}
+
+    <h3>Pagina</h3>
+<div class="row">
+    <div class="col-12">
+        <div class="mb-3">
+            <input type="button" class="btn btn-primary" value="Nuevo" data-toggle="modal" data-target="#exampleModal" onclick="limpiar()"/>
+        </div>
+        <div id="domDinamico"><span>Cargando...</span></div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Formulario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Cuerpo-->
+            <div class="modal-body">
+                <div id="mensajeVacios"></div>
+                <input type="hidden" id="iidpagina" class="form-control data" name="Iidpagina" />
+                <div class="form-group">
+
+                    <label>Mensaje:</label>
+                    <input type="text" autocomplete="off"autofocus id="mensaje" class="form-control data requerido" name="Mensaje" placeholder="Escriba el mensaje de la pagina" />
+
+                </div>
+                <div class="form-group">
+
+                    <label>Accion:</label>
+                    <input type="text" autocomplete="off" id="accion" class="form-control data requerido" name="Accion" placeholder="Escriba la accion de la pagina" />
+
+                </div>
+                <div class="form-group">
+
+                    <label>Controlador:</label>
+                    <input type="text" autocomplete="off" id="controlador" class="form-control data requerido" name="Controlador" placeholder="Escriba el controlador de la pagina" />
+
+                </div>
+
+            </div>
+            <!--footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnCerrar">Cerrar</button>
+                <input type="button" class="btn btn-primary" id="btnEnviar" onclick="enviar()" value="Guardar" />
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/funcionesGenericas.js"></script>
+<script>
+    $(function () {
+        listar();
+    });
+    function listar() {
+        crearTabla("/Pagina/Listar", ["mensaje", "accion", "controlador"], "iidpagina",
+            ["MENSAJE", "ACCION", "CONTROLADOR"], document.getElementById("domDinamico"));
+    }
+    function detalle(id) {
+        document.getElementById("mensajeVacios").innerHTML = "";
+        $.get("/pagina/obtenerPorId?id=" + id, function (data) {
+            colorDefault();
+            $("#iidpagina").val(data.iidpagina);
+            $("#mensaje").val(data.mensaje);
+            $("#accion").val(data.accion);
+            $("#controlador").val(data.controlador);
+        });
+    }
+    function eliminar(id) {
+        alertify.confirm("¿Seguro deseas eliminar el registro?", function (e) {
+            if (e) {
+                eliminarData("/pagina/eliminar?id=" + id);
+            }
+        });
+    }
+    function enviar() {
+        if (validarVacios()) {
+            var frm = new FormData();
+            capturarDatos(frm);
+            EnviarInformacion("/pagina/guardar", frm, false);
+        }
+    }
+</script>
+

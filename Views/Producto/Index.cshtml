@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "Catalogo";
+}
+<style>
+    #txtBuscarProducto {
+        border-top-left-radius: 30px !important;
+    }
+
+    #btnBuscar {
+        border-top-right-radius: 30px !important;
+    }
+
+    .ir-arriba {
+        display: none;
+        border-radius: 30px;
+        color: white;
+        position: fixed;
+        bottom: 70px; /*baje*/
+        right: 0; /*/derecha*/
+        z-index: 100;
+    }
+
+    #btnReportar {
+        right: 0px !important;
+    }
+</style>
+<input type="hidden" id="idSesion" value="@ViewBag.id" />
+<div class="row">
+    <div class="col-12 mb-3">
+        <div class="input-group">
+            <input type="text" id="txtBuscarProducto" placeholder="Filtrar por nombre" class="form-control" />
+            <input type="button" id="btnBuscar" onclick="limpiarBusqueda()" value="Limpiar" class="btn btn-danger" />
+        </div>
+        <button class="ir-arriba btn btn-success" type="button" id="btnSubir">subir</button>
+    </div>
+</div>
+<div class="row" id="cartas">
+    <div class="col-12"><span>Cargando...</span></div>
+</div>
+<!-- Modal denuncia-->
+<div class="modal fade" id="modalReporte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="contenidoDenuncia">
+                </div>
+            </div>
+            <!--footer-->
+            <div class="modal-footer">
+                <input type="button" class="btn btn-danger" data-dismiss="modal" id="btnCerrarModal" value="Cancelar" />
+                <input type="button" class="btn btn-primary" id="btnEnviarReporte" onclick="denunciarPublicacion()" value="Denunciar" />
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="verImagen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-center">
+                    <h3 id="nombreproducto"></h3>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="verImagenModal"><span >Cargando...</span></div>
+        </div>
+    </div>
+</div>
+<script src="~/js/PeticionesAJAX/catalogo.js"></script>

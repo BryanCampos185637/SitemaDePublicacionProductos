@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewData["Title"] = "Vender";
+}
+
+<h3>¿Que deseas hacer @ViewBag.nombre?</h3>
+<div class="row">
+    <div class="col-12">
+        <!--botonera-->
+        <div class="mb-3">
+            <table class="table-responsive-sm" style="background:#050505 !important">
+                <tbody style="background:#050505 !important">
+                    <tr style="background:#050505 !important">
+                        <td>
+                            <input type="button" class="btn btn-primary" value="Agregar" title="Abre el formulario para registrar productos" onclick="abrirOpcion(1)" />
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-primary" value="Mis productos" title="Muestra una tabla con los productos que haz publicado" onclick="abrirOpcion(2)" />
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-primary" id="btnNotificaciones" value="Notificaciones" title="revisa las notificaciones" onclick="abrirOpcion(3)" />
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-primary" value="Mi perfil" title="Permite modificar tu perfil" onclick="abrirOpcion(4)" />
+                        </td>
+                        <td>
+                            <a href="~/Producto/index" class="btn btn-primary" style="border-radius:30px;" title="Abre la pantalla para ver todos los productos a la venta">Catalogo</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="domDinamico"></div>
+    </div>
+</div>
+
+<!-- Modal producto-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Formulario Registro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <input type="hidden" id="txtIdModal" class="form-control dataModal" name="Iidproducto" />
+                        <div id="mensajeVaciosModal"></div>
+                        <div class="form-group">
+                            <label>Imagen:</label>
+                            <img src="" class="card-img mb-1 foto" id="fotoModal" style="box-shadow:0px 0px 6px; border-radius:4px; max-height:355px !important;" />
+                            <input type="file" class="form-control-file" id="fileFotoModal" accept="image/*" />
+                            <input type="hidden" class="form-control" id="metaDataFotoModal" />
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                            <label>Nombre:</label>
+                            <input type="text" id="txtNombreModal" class="form-control requeridoModal dataModal" autocomplete="off" name="NOMBRE" placeholder="Ingrese el nombre del producto" />
+                        </div>
+                        <div class="form-group">
+                            <label>Categoria:</label>
+                            <select id="cbxCategoriaModal" class="form-control requeridoModal dataModal" name="IIDCATEGORIA"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Descripcion:</label>
+                            <textarea id="txtDescripcionModal" style="resize:none" placeholder="Ingrese una breve descripcion del producto" autocomplete="off" class="form-control requeridoModal dataModal" maxlength="50" name="DESCRIPCION"></textarea>
+                            <div id="contadorLetra"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Precio:</label>
+                            <input type="number" id="txtPrecioModal" placeholder="Ingrese el precio del producto" autocomplete="off" class="form-control requeridoModal dataModal" min="0" name="PRECIO" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnCerrarModal">Cerrar</button>
+                <input type="button" class="btn btn-primary" id="btnEnviar" onclick="enviar(false)" value="Guardar" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Notificaciones-->
+<div class="modal fade" id="modalNotificacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="mensajeNotificacion"></div>
+            </div>
+            <!--footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnCerrarNotificacion">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/funcionesGenericas.js"></script>
+<script src="~/js/PeticionesAJAX/opcionesVendedor.js"></script>
