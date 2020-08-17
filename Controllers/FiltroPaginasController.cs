@@ -71,7 +71,7 @@ namespace CompratodoUI.Controllers
                         destino = data.Correo;//capturamos su correo
                         //empezamos a redactar el correo
                         string asunto = "Recuperar contraseña";
-                        string mensaje = "<p>Hola " + data.Nombre + " " + data.Apellidos + " tu contraseña nueva es " + contraseña + " se te recomienda cambiarla cuando hayas iniciado sesion.</p><br><p>Atentamente:compratodo.somee.com</p>";
+                        string mensaje = "<p>Hola " + data.Nombre + " " + data.Apellidos + " tu contraseña nueva es " + contraseña + " se te recomienda cambiarla cuando hayas iniciado sesion.</p><br><p>Atentamente:compratodo.com</p>";
                         MailMessage mailMessage = new MailMessage(origen, destino, asunto, mensaje);
                         mailMessage.IsBodyHtml = true;//habilitamos etiquetas html
                         SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");//el host de gmail por donde se enviara el correo
