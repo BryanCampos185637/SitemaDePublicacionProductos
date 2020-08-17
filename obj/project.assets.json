@@ -8615,11 +8615,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\docs\\CompratodoUI.csproj",
+      "projectUniqueName": "C:\\Users\\Bryan J. Campos\\Desktop\\git\\SitemaDePublicacionProductos\\CompratodoUI.csproj",
       "projectName": "CompratodoUI",
-      "projectPath": "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\docs\\CompratodoUI.csproj",
+      "projectPath": "C:\\Users\\Bryan J. Campos\\Desktop\\git\\SitemaDePublicacionProductos\\CompratodoUI.csproj",
       "packagesPath": "C:\\Users\\Bryan J. Campos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\docs\\obj\\",
+      "outputPath": "C:\\Users\\Bryan J. Campos\\Desktop\\git\\SitemaDePublicacionProductos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Bryan J. Campos\\AppData\\Roaming\\NuGet\\NuGet.Config",

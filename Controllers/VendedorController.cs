@@ -48,7 +48,6 @@ namespace CompratodoUI.Controllers
             var respuesta = bl.guardar(vendedores);
             return respuesta;
         }
-        public static List<Paginas> menuSegunTipoUsuario;//para hacer dinamico el menu
         public string login(string usuario, string contraseña)
         {
             Vendedores data = bl.login(usuario, contraseña);//capturamos la data

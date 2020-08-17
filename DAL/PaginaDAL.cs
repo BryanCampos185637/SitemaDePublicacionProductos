@@ -88,13 +88,13 @@ namespace CompratodoUI.DAL
                 return lista;
             }
         }
-        public static List<Paginas> menuDinamico(int idUsuario)
+        public static List<Paginas> menuDinamico(int idTipoUsuario)
         {
             using (var bd = new BDCatalogoContext())
             {
                 List<Paginas> lista = (from ptu in bd.PaginaTipoUsuarios
                                        join pagina in bd.Paginas on ptu.Iidpagina equals pagina.Iidpagina
-                                       where ptu.Bhabilitado == 1 && ptu.Iidtipousuario == idUsuario && pagina.Bhabilitado == 1
+                                       where ptu.Bhabilitado == 1 && ptu.Iidtipousuario == idTipoUsuario && pagina.Bhabilitado == 1
                                        select new Paginas
                                        {
                                            Mensaje = pagina.Mensaje,

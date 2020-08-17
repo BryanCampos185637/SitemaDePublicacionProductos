@@ -136,10 +136,11 @@ namespace CompratodoUI.DAL
                              id=(int)vendedor.Iidvendedor,
                              nombre=vendedor.Nombre,
                              apellidos=vendedor.Apellidos,
-                             nombretipousuario=vendedor.Nombreusuario,
+                             nombretipousuario=tipousuario.Nombre,
                              tipousuario=vendedor.Iidtipousuario,
                              correo=vendedor.Correo,
-                             bhabilitado=vendedor.Bhabilitado
+                             bhabilitado=vendedor.Bhabilitado,
+                             usuario=vendedor.Nombreusuario
                          }).ToList();
             }
             lista = lista.OrderByDescending(x => x.id).ToList();

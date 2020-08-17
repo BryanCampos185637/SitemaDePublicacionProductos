@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aSjnAhz40guHuvrAhYzdtnKPze5ZQ2TC0rClSo7BW2wFSweX1DtVOaf9IGJb4lTM/O0EQVwE7KX/iAnzNB8dfw==",
+  "dgSpecHash": "IgayXppE96fZfgZ8EICMuZZvOpyneccHad44QyP5CP9CtsIvmHRTvyQTiF6KKn5bF4rsiR0BFPH0PB7L0yBsEQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\docs\\CompratodoUI.csproj",
+  "projectFilePath": "C:\\Users\\Bryan J. Campos\\Desktop\\git\\SitemaDePublicacionProductos\\CompratodoUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bryan J. Campos\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",
     "C:\\Users\\Bryan J. Campos\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",

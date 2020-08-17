@@ -57,8 +57,8 @@
             listar();
         });
         function listar() {
-            crearTablaUsuario("/usuario/listarUsuarios", ["nombre", "apellidos", "nombretipousuario", "correo"],
-                "id", ["NOMBRE", "APELLIDO", "TIPO USUARIO", "CORREO"], document.getElementById("domDinamico"));
+            crearTablaUsuario("/usuario/listarUsuarios", ["nombre", "apellidos", "usuario", "correo", "nombretipousuario"],
+                "id", ["NOMBRE", "APELLIDO", "USUARIO", "CORREO","ROL"], document.getElementById("domDinamico"));
             llenarCombo("/tipousuario/listar", document.getElementById("cbxTipoUsuario"), "iidtipousuario", "nombre");
         }
         function crearTablaUsuario(url, propiedades, llaveprimaria, encabezados, control) {
