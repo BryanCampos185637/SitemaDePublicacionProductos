@@ -10,10 +10,16 @@ namespace CompratodoUI.DAL
 {
     public class ProductoDAL
     {
-        int result;
+        int result = 0;
+        #region eliminar
+        /// <summary>
+        /// eliminacion logica solo se la oculto al usuario
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool eliminar(Int64 id)
         {
-            using(var bd = new BDCatalogoContext())
+            using (var bd = new BDCatalogoContext())
             {
                 var data = bd.Productos.Where(p => p.Iidproducto.Equals(id)).First();
                 data.Bhabilitado = 0;
@@ -22,11 +28,19 @@ namespace CompratodoUI.DAL
                 else return false;
             }
         }
+        #endregion
+
+        #region guardar
+        /// <summary>
+        /// guarda o modifica informacion dependiendo del id
+        /// </summary>
+        /// <param name="productos"></param>
+        /// <returns></returns>
         public int guardar(Productos productos)
         {
             try
             {
-                using(var bd = new BDCatalogoContext())
+                using (var bd = new BDCatalogoContext())
                 {
                     if (productos.Iidproducto.Equals(0))//guarda
                     {
@@ -55,6 +69,16 @@ namespace CompratodoUI.DAL
                 return 0;
             }
         }
+        #endregion
+
+        #region listar
+        /// <summary>
+        /// lista general de todos los productos
+        /// si el parametro nombre viene vacio muestra todos
+        /// si viene con tres caracteres se ejecuta la busqueda
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
         public List<ProductoCLS> listar(string nombre)
         {
             List<ProductoCLS> lista = new List<ProductoCLS>();
@@ -89,7 +113,7 @@ namespace CompratodoUI.DAL
                                  join c in bd.Categorias on p.Iidcategoria equals c.Iidcategoria
                                  join v in bd.Vendedores on p.Iidvendedor equals v.Iidvendedor
                                  where p.Bhabilitado == 1 && p.Estadoventa == 1
-                                 && (p.Nombre.Contains(nombre) || c.Nombre.Equals(nombre))
+                                 && (p.Nombre.Contains(nombre) || c.Nombre.Contains(nombre))
                                  select new ProductoCLS
                                  {
                                      id = p.Iidproducto,
@@ -109,13 +133,24 @@ namespace CompratodoUI.DAL
             }
             lista = lista.OrderByDescending(x => x.id).ToList();
             return lista;
-        }//lista de catalogo
-        public List<ProductoCLS> productosPorVendedor(int id)
+        }
+        #endregion
+
+        #region listar productos del vendedor
+        /// <summary>
+        /// le muestra al usuario los produtos que a publicado
+        /// el administrador puede ver todos los registros existentes
+        /// </summary>
+        /// <param name="idVendedor"></param>
+        /// <returns></returns>
+        public List<ProductoCLS> productosPorVendedor(int idVendedor)
         {
             List<ProductoCLS> lista = new List<ProductoCLS>();
+            VendedorDAL vendedorDAL = new VendedorDAL();//instancia para obtener la data del usuario
+            var tipousuario = vendedorDAL.obtenerPorId(idVendedor);
             using (var bd = new BDCatalogoContext())
             {
-                if (menuDinamico.sesionActiva!=null && menuDinamico.sesionActiva==1)
+                if (tipousuario.Iidtipousuario == 1)//el admin puede ver todos los productos sin importar de quien sea
                 {
                     lista = (from p in bd.Productos
                              join c in bd.Categorias on p.Iidcategoria equals c.Iidcategoria
@@ -133,15 +168,15 @@ namespace CompratodoUI.DAL
                                  nombreusuario = v.Nombre + " " + v.Apellidos,
                                  tel = v.Telefonocelular == null ? "" : v.Telefonocelular,
                                  correo = v.Correo == null ? "" : v.Correo,
-                                 estadoventa=(int) p.Estadoventa
+                                 estadoventa = (int)p.Estadoventa
                              }).ToList();
                 }
-                else
+                else//productos del usuario vendedor
                 {
                     lista = (from p in bd.Productos
                              join c in bd.Categorias on p.Iidcategoria equals c.Iidcategoria
                              join v in bd.Vendedores on p.Iidvendedor equals v.Iidvendedor
-                             where p.Bhabilitado == 1 && p.Iidvendedor.Equals(id)
+                             where p.Bhabilitado == 1 && p.Iidvendedor.Equals(idVendedor)
                              select new ProductoCLS
                              {
                                  id = p.Iidproducto,
@@ -158,24 +193,40 @@ namespace CompratodoUI.DAL
                              }).ToList();
                 }
             }
-            //lista = lista.OrderByDescending(z => z.id).ToList();
+            lista = lista.OrderByDescending(z => z.id).ToList();
             return lista;
-        }//los productos del usuario que inicio sesion
+        }
+        #endregion
+
+        #region detalles del registro segun el id
+        /// <summary>
+        /// muestra los detalles de un producto
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Productos obtenerPorId(int id)
         {
             try
             {
-                using(var bd = new BDCatalogoContext())
+                using (var bd = new BDCatalogoContext())
                 {
                     var data = bd.Productos.Where(p => p.Iidproducto.Equals(id)).First();
                     return data;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return null;
             }
-        }//detalles del producto
+        }
+        #endregion
+
+        #region cambiar estado del producto
+        /// <summary>
+        /// cambia el estado a vetado o le quita el veto
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool cambiarEstado(int id)//para cambiar el estado de venta
         {
             try
@@ -191,11 +242,21 @@ namespace CompratodoUI.DAL
                     return true;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return false;
             }
         }
+        #endregion
+
+        #region vetar producto que no cumpla con las politicas
+        /// <summary>
+        /// este se usa cuando han denunciado el producto 
+        /// y se necesita notificar al usuario que ha sido vetado
+        /// el producto que publicar por romper las reglas
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool vetarProducto(Int64 id)
         {
             using (var bd = new BDCatalogoContext())
@@ -218,12 +279,12 @@ namespace CompratodoUI.DAL
                             var productoVetado = bd.Denuncias.Where(p => p.Iidproducto.Equals(data.Iidproducto)).First();//obtenemos el registro de la denuncia
                             var nveces = bd.Notificaciones.Where(p => p.Iiddenuncia.Equals(productoVetado.Iiddenuncia)).Count();//veremos si ya existe una notificacion con el id de la denuncia
                             if (nveces == 0) // si no hay ninguna coincidencia procedemos a crear el registros
-                            { 
-                            Notificaciones notificaciones = new Notificaciones();//hacemos una instancia del modelo
-                            notificaciones.Iiddenuncia = productoVetado.Iiddenuncia;//agregamos el id de la denuncia
-                            notificaciones.Notificacionleida = 0;//cero para mi significa que no a visto la notificacion
-                            bd.Notificaciones.Add(notificaciones);//mandamos a guardar la data
-                            bd.SaveChanges();//completamos el guardado
+                            {
+                                Notificaciones notificaciones = new Notificaciones();//hacemos una instancia del modelo
+                                notificaciones.Iiddenuncia = productoVetado.Iiddenuncia;//agregamos el id de la denuncia
+                                notificaciones.Notificacionleida = 0;//cero para mi significa que no a visto la notificacion
+                                bd.Notificaciones.Add(notificaciones);//mandamos a guardar la data
+                                bd.SaveChanges();//completamos el guardado
                             }
                         }
                         //si todo esta bien cerramos la transaccion
@@ -232,11 +293,12 @@ namespace CompratodoUI.DAL
                         return true;
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     return false;
                 }
             }
         }
+        #endregion
     }
 }

@@ -31,6 +31,7 @@ namespace CompratodoUI.Controllers
                 return Redirect("/vendedor/index");
             }
         }
+        [HttpGet]
         public List<Categorias> listar()
         {
             using(var bd1 = new BDCatalogoContext())
@@ -40,6 +41,7 @@ namespace CompratodoUI.Controllers
                 return lista;
             }
         }
+        [HttpGet]
         public Categorias obtenerPorId(int id)
         {
             Categorias data = bd.Categorias.Where(p => p.Iidcategoria.Equals(id)).FirstOrDefault();

@@ -46,7 +46,7 @@ function pintarCards(ruta) {
                 html += '<div class="card-header text-center"><h4>' + item.nombre + '</h4></div >';
                 html += '<div class="card-body">';
                 //html += '<img src="/foto_producto/' + item.foto + '" style="box-shadow:0px 0px 6px; border-radius:4px; height: 315px;" class="card-img mb-1" />';
-                html += '<img style="height: 40vh !important; object-fit: cover !important;" src="/foto_producto/' + item.foto + '" class="card-img mb-1" onclick="maximizar(' + item.id + ')" data-toggle="modal" data-target="#verImagen"/>';
+                html += '<img style="height: 40vh !important; object-fit: cover !important;" src="/foto_producto/' + item.foto + '" class="card-img mb-1 card-catalogo" onclick="maximizar(' + item.id + ')" data-toggle="modal" data-target="#verImagen"/>';
                 html += '<span>' + item.descripcion + '</span>';
                 html += '</div>';
                 html += '<div class="card-footer">';

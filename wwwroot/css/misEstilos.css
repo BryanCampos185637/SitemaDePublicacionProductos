@@ -32,3 +32,6 @@ input, textarea, select,.btn,.badge {
 .alertify-button-ok:hover {
     background: #3B7808 !important;
 }
+.card-catalogo:hover {
+    cursor: zoom-in;
+}

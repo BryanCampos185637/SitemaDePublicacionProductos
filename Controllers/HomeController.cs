@@ -14,6 +14,9 @@ namespace CompratodoUI.Controllers
     public class HomeController : Controller
     {
         Int64 usuarioid = 0;
+        /// <summary>
+        /// solo prueba para agregar 499 registros
+        /// </summary>
         public void guardar500registros()
         {
             BL.ProductoBL producto = new ProductoBL();
@@ -29,18 +32,7 @@ namespace CompratodoUI.Controllers
                     productos.Iidvendedor = 1;
                     productos.Iidcategoria = idcategoria;
                     productos.Precio = (decimal)0.89*i;
-                    if (i <= 100)
-                    {
-                        productos.Foto = "1651-earplugs-1920x1200-music-wallpaper.jpg";
-                    }
-                    else if(i>100 && i<=300)
-                    {
-                        productos.Foto = "2013_11_Sunset-Girl-Wallpaper.jpg";
-                    }
-                    else
-                    {
-                        productos.Foto = "26242-audio-technica-headphones-1920x1200-music-wallpaper.jpg";
-                    }
+                    productos.Foto = "1651-earplugs-1920x1200-music-wallpaper.jpg";
                     productos.Descripcion = "lo qye sea " + i;
                     productos.Estadoventa = 1;
                     producto.guardar(productos);
@@ -67,21 +59,6 @@ namespace CompratodoUI.Controllers
         public IActionResult ErrorPermiso()
         {
             return View();
-        }
-        public JsonResult loging(string user, string contra)
-        {
-            int result = 0;
-            VendedorBL bl = new VendedorBL();
-            var data = bl.login(user, contra);
-            if (data != null)
-            {
-                result = 1;
-            }
-            else
-            {
-                result = 0;
-            }
-            return Json(result);
         }
     }
 }
