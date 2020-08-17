@@ -6,12 +6,12 @@ using CompratodoUI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace CompratodoUI.Controllers
 {
     public class ProductoController : Controller
     {
-        BDCatalogoContext con = new BDCatalogoContext();
         ProductoBL bL = new ProductoBL();
         #region vistas
         public IActionResult Index()
@@ -40,7 +40,8 @@ namespace CompratodoUI.Controllers
             {
                 if (FiltroPaginasController.puedeVerEstaPagina("producto", "opcionesVendedor", idUsuario))//validamos que el usuario sea administrador
                 {
-                    var data = con.Vendedores.Where(p => p.Iidvendedor.Equals(idUsuario)).First();
+                    VendedorBL vendedorBL = new VendedorBL();
+                    var data = vendedorBL.perfil(idUsuario);
                     ViewBag.nombre = data.Nombre + " " + data.Apellidos;
                     return View();
                 }
@@ -69,11 +70,9 @@ namespace CompratodoUI.Controllers
         }
         public JsonResult listarCategorias()
         {
-            using(var bd = new BDCatalogoContext())
-            {
-                var lista = bd.Categorias.Where(x => x.Bhabilitado == 1).Select(p => new { p.Iidcategoria, p.Nombre }).ToList();
-                return Json(lista);
-            }
+            CategoriaBL categoriaBL = new CategoriaBL();
+            var lista = categoriaBL.listar();
+            return Json(lista);
         }
         public JsonResult obtenerPorId(int id)
         {

@@ -11,6 +11,10 @@ namespace CompratodoUI.BL
     public class ProductoBL
     {
         ProductoDAL dal = new ProductoDAL();
+        public List<ProductoCLS> PintarProductoSegunCategoria(Int64 idCategoria, string nombre)
+        {
+            return dal.PintarProductoSegunCategoria(idCategoria,nombre);
+        }
         public bool cambiarEstado(int id)
         {
             return dal.cambiarEstado(id);

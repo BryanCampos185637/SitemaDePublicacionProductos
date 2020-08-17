@@ -13,6 +13,7 @@ namespace CompratodoUI.Models
         public int Iidcategoria { get; set; }
         public string Nombre { get; set; }
         public int Bhabilitado { get; set; }
+        public string Descripcion { get; set; }
 
         public virtual ICollection<Productos> Productos { get; set; }
     }

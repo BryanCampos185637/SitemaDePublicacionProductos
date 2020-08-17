@@ -35,3 +35,12 @@ input, textarea, select,.btn,.badge {
 .card-catalogo:hover {
     cursor: zoom-in;
 }
+.ir-arriba {
+    display: none;
+    border-radius: 30px;
+    color: white;
+    position: fixed;
+    bottom: 70px; /*baje*/
+    right: 0; /*/derecha*/
+    z-index: 100;
+}

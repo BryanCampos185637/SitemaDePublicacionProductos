@@ -7,6 +7,10 @@ namespace CompratodoUI.BE
 {
     public class DenunciaCLS
     {
+        //BE= Bussines Entity
+        /// <summary>
+        /// estas clases solo me serviran para generar listas
+        /// </summary>
         public Int64 id { get; set; }
         public string motivo { get; set; }
         public Int64 idproducto { get; set; }

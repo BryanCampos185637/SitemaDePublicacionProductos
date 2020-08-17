@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using CompratodoUI.BE;
+using CompratodoUI.BL;
 using CompratodoUI.Models;
 using Microsoft.AspNetCore.Http;
-using CompratodoUI.BL;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CompratodoUI.Controllers
 {
-    public class CategoriaController : Controller
+    public class MenuController : Controller
     {
-        CategoriaBL bl = new CategoriaBL();
         public IActionResult Index()
         {
             int idUsuario = 0;//variable que utilizaremos para verificar
             idUsuario = Convert.ToInt32(HttpContext.Session.GetString("usuario"));//capturamos el id del usuario
             if (idUsuario > 0)//si existe el id
             {
-                if (FiltroPaginasController.puedeVerEstaPagina("categoria", "index",idUsuario))//SI ESTA RELACIONADA LA VISTA CON EL TIPO DE USUARIO DAMOS ACCESO
+                if (FiltroPaginasController.puedeVerEstaPagina("menu", "index", idUsuario))//SI ESTA RELACIONADA LA VISTA CON EL TIPO DE USUARIO DAMOS ACCESO
                 {
+                    ViewBag.id = idUsuario;
                     return View();
                 }
                 else//SI NO TIENE ASIGNADA LA VISTA LO ENVIAMOS A UNA VISTA DE ERROR
@@ -33,24 +34,15 @@ namespace CompratodoUI.Controllers
             }
         }
         [HttpGet]
-        public List<Categorias> listar()
+        public JsonResult listarCategorias()
         {
-            return bl.listar();
+            CategoriaBL categoriaBL = new CategoriaBL();
+            return Json(categoriaBL.listar());
         }
-        [HttpGet]
-        public Categorias obtenerPorId(int id)
+        public JsonResult PintarProductoSegunCategoria(Int64 idCategoria,string nombre)
         {
-            Categorias data = bl.obtenerPorId(id);
-            return data;
-        }
-        public bool eliminar(int id)
-        {
-            return bl.eliminar(id);
-        }
-        public int guardar(Categorias categoria)
-        {
-            categoria.Bhabilitado = 1;
-            return bl.guardar(categoria);
+            ProductoBL productoBL = new ProductoBL();
+            return Json(productoBL.PintarProductoSegunCategoria(idCategoria,nombre));
         }
     }
 }

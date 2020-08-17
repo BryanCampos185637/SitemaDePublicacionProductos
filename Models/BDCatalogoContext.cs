@@ -29,8 +29,7 @@ namespace CompratodoUI.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("SERVER=LAPTOP-AG12FGOC; DATABASE=BDCatalogo; INTEGRATED SECURITY=TRUE;");
-                //optionsBuilder.UseSqlServer("Data Source=SQL5063.site4now.net;Initial Catalog=DB_A65937_BDCatalogo;User Id=DB_A65937_BDCatalogo_admin;Password=bryan2020");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-AG12FGOC; database=BDCatalogo;Integrated security=true");
             }
         }
 
@@ -39,11 +38,16 @@ namespace CompratodoUI.Models
             modelBuilder.Entity<Categorias>(entity =>
             {
                 entity.HasKey(e => e.Iidcategoria)
-                    .HasName("PK__Categori__B57A3B9F9A67C70E");
+                    .HasName("PK__Categori__B57A3B9F78928C8B");
 
                 entity.Property(e => e.Iidcategoria).HasColumnName("IIDCATEGORIA");
 
                 entity.Property(e => e.Bhabilitado).HasColumnName("BHABILITADO");
+
+                entity.Property(e => e.Descripcion)
+                    .HasColumnName("DESCRIPCION")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -55,7 +59,7 @@ namespace CompratodoUI.Models
             modelBuilder.Entity<Denuncias>(entity =>
             {
                 entity.HasKey(e => e.Iiddenuncia)
-                    .HasName("PK__Denuncia__953390E9FBA79E4D");
+                    .HasName("PK__Denuncia__953390E9C1F883C4");
 
                 entity.Property(e => e.Iiddenuncia).HasColumnName("IIDDENUNCIA");
 
@@ -79,7 +83,7 @@ namespace CompratodoUI.Models
             modelBuilder.Entity<Notificaciones>(entity =>
             {
                 entity.HasKey(e => e.Iidnotificacion)
-                    .HasName("PK__Notifica__7DA9A90A7CE9FA5E");
+                    .HasName("PK__Notifica__7DA9A90A59FB3806");
 
                 entity.Property(e => e.Iidnotificacion).HasColumnName("IIDNOTIFICACION");
 
@@ -97,7 +101,7 @@ namespace CompratodoUI.Models
             modelBuilder.Entity<PaginaTipoUsuarios>(entity =>
             {
                 entity.HasKey(e => e.Iidpaginatipousuario)
-                    .HasName("PK__PaginaTi__80FD0316EB21F4A1");
+                    .HasName("PK__PaginaTi__80FD031605592FF0");
 
                 entity.Property(e => e.Iidpaginatipousuario).HasColumnName("IIDPAGINATIPOUSUARIO");
 
@@ -123,7 +127,7 @@ namespace CompratodoUI.Models
             modelBuilder.Entity<Paginas>(entity =>
             {
                 entity.HasKey(e => e.Iidpagina)
-                    .HasName("PK__Paginas__8E759E4E7FBF2D52");
+                    .HasName("PK__Paginas__8E759E4EE8DD971A");
 
                 entity.Property(e => e.Iidpagina).HasColumnName("IIDPAGINA");
 
@@ -151,7 +155,7 @@ namespace CompratodoUI.Models
             modelBuilder.Entity<Productos>(entity =>
             {
                 entity.HasKey(e => e.Iidproducto)
-                    .HasName("PK__Producto__158EDF3031B98D24");
+                    .HasName("PK__Producto__158EDF302C28C982");
 
                 entity.Property(e => e.Iidproducto).HasColumnName("IIDPRODUCTO");
 
@@ -200,7 +204,7 @@ namespace CompratodoUI.Models
             modelBuilder.Entity<TipoUsuarios>(entity =>
             {
                 entity.HasKey(e => e.Iidtipousuario)
-                    .HasName("PK__TipoUsua__A05A91164C6E06EF");
+                    .HasName("PK__TipoUsua__A05A9116674640C1");
 
                 entity.Property(e => e.Iidtipousuario).HasColumnName("IIDTIPOUSUARIO");
 
@@ -222,7 +226,7 @@ namespace CompratodoUI.Models
             modelBuilder.Entity<Vendedores>(entity =>
             {
                 entity.HasKey(e => e.Iidvendedor)
-                    .HasName("PK__Vendedor__6C5F74836122CF00");
+                    .HasName("PK__Vendedor__6C5F7483A4A740C3");
 
                 entity.Property(e => e.Iidvendedor).HasColumnName("IIDVENDEDOR");
 

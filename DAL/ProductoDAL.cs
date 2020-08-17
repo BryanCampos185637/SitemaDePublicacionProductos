@@ -300,5 +300,65 @@ namespace CompratodoUI.DAL
             }
         }
         #endregion
+
+        /// <summary>
+        /// accion que envia la data de los productos que coincidan con el id de la categoria
+        /// si el parametro nombre viene null se muestra en general, pero si viene con texto se filtra
+        /// </summary>
+        /// <param name="idCategoria"></param>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        public List<ProductoCLS> PintarProductoSegunCategoria(Int64 idCategoria, string nombre)
+        {
+            List<ProductoCLS> lista = new List<ProductoCLS>();
+            using (var bd = new BDCatalogoContext())
+            {
+                if (nombre == "" || nombre == null)
+                {
+                    lista = (from p in bd.Productos
+                             join c in bd.Categorias on p.Iidcategoria equals c.Iidcategoria
+                             join v in bd.Vendedores on p.Iidvendedor equals v.Iidvendedor
+                             where p.Bhabilitado == 1 && p.Estadoventa == 1 && v.Bhabilitado == 1
+                             && c.Iidcategoria == idCategoria
+                             select new ProductoCLS
+                             {
+                                 id = p.Iidproducto,
+                                 nombre = p.Nombre,
+                                 precio = p.Precio,
+                                 foto = p.Foto,
+                                 nombrecategoria = c.Nombre,
+                                 idcategoria = p.Iidcategoria,
+                                 descripcion = p.Descripcion == null ? "" : p.Descripcion,
+                                 nombreusuario = v.Nombre + " " + v.Apellidos,
+                                 tel = v.Telefonocelular == null ? "" : v.Telefonocelular,
+                                 correo = v.Correo == null ? "" : v.Correo,
+                                 idvendedor = (int)v.Iidvendedor
+                             }).ToList();
+                }
+                else//filtro
+                {
+                    lista = (from p in bd.Productos
+                             join c in bd.Categorias on p.Iidcategoria equals c.Iidcategoria
+                             join v in bd.Vendedores on p.Iidvendedor equals v.Iidvendedor
+                             where p.Bhabilitado == 1 && p.Estadoventa == 1 && v.Bhabilitado == 1
+                             && c.Iidcategoria == idCategoria && p.Nombre.Contains(nombre)
+                             select new ProductoCLS
+                             {
+                                 id = p.Iidproducto,
+                                 nombre = p.Nombre,
+                                 precio = p.Precio,
+                                 foto = p.Foto,
+                                 nombrecategoria = c.Nombre,
+                                 idcategoria = p.Iidcategoria,
+                                 descripcion = p.Descripcion == null ? "" : p.Descripcion,
+                                 nombreusuario = v.Nombre + " " + v.Apellidos,
+                                 tel = v.Telefonocelular == null ? "" : v.Telefonocelular,
+                                 correo = v.Correo == null ? "" : v.Correo,
+                                 idvendedor = (int)v.Iidvendedor
+                             }).ToList();
+                }
+            }
+            return lista;
+        }
     }
 }

@@ -28,6 +28,10 @@
                         <label>Nombre:</label>
                         <input type="text" style="resize: none;" autocomplete="off" class="form-control data requerido" id="txtNombre" name="NOMBRE" placeholder="Escriba el nombre de la categoria" />
                     </div>
+                    <div class="form-group">
+                        <label>Descripcion:</label>
+                        <input type="text" style="resize: none;" autocomplete="off" class="form-control data requerido" id="txtDescripcion" name="DESCRIPCION" placeholder="Escriba una breve descripcion" />
+                    </div>
                 </div>
                 <!--footer-->
                 <div class="modal-footer">
@@ -89,6 +93,7 @@
         $.get("/categoria/obtenerPorId?id=" + id, function (data) {
             $("#txtId").val(data.iidcategoria);
             $("#txtNombre").val(data.nombre);
+            $("#txtDescripcion").val(data.descripcion);
         })
         colorDefault();
     }

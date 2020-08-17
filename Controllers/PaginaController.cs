@@ -48,18 +48,31 @@ namespace CompratodoUI.Controllers
         {
             return Json(bl.listar());
         }
+        /// <summary>
+        /// generamos el menu dependiendo del tipo de usuario
+        /// </summary>
+        /// <returns></returns>
         public JsonResult generarMenu()
         {
+            int idVendedor = 0;
+            idVendedor = Convert.ToInt32(HttpContext.Session.GetString("usuario"));
             try
             {
-                using (var bd = new BDCatalogoContext())
+                if (idVendedor > 0)//si hay un id proseguimos
                 {
-                    int idVendedor = Convert.ToInt32(HttpContext.Session.GetString("usuario"));
-                    var data = bd.Vendedores.Where(p => p.Iidvendedor.Equals(idVendedor)).First();
-                    return Json(PaginaBL.menuDinamico(data.Iidtipousuario));
+                    using (var bd = new BDCatalogoContext())
+                    {
+                        VendedorBL bl = new VendedorBL();//instancia de la clase 
+                        var data = bl.perfil(idVendedor);//obtenemos su data
+                        return Json(PaginaBL.menuDinamico(data.Iidtipousuario));
+                    }
+                }
+                else
+                {
+                    return Json(null);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Json(null);
             }

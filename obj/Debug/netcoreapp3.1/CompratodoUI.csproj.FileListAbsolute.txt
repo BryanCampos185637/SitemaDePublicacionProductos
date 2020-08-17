@@ -457,3 +457,4 @@ C:\Users\Bryan J. Campos\Desktop\git\SitemaDePublicacionProductos\obj\Debug\netc
 C:\Users\Bryan J. Campos\Desktop\git\SitemaDePublicacionProductos\obj\Debug\netcoreapp3.1\CompratodoUI.dll
 C:\Users\Bryan J. Campos\Desktop\git\SitemaDePublicacionProductos\obj\Debug\netcoreapp3.1\CompratodoUI.pdb
 C:\Users\Bryan J. Campos\Desktop\git\SitemaDePublicacionProductos\obj\Debug\netcoreapp3.1\CompratodoUI.genruntimeconfig.cache
+C:\Users\Bryan J. Campos\Desktop\git\SitemaDePublicacionProductos\obj\Debug\netcoreapp3.1\Razor\Views\Menu\Index.cshtml.g.cs

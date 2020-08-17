@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<input type="hidden" id="idSesion" value="@ViewBag.id" />
+
+<div class="row" id="seccionFiltro">
+    <div class="col-12 mb-3">
+        <div class="input-group">
+            <input type="text" id="txtBuscarProducto" placeholder="Buscar por nombre" class="form-control" />
+            <input type="button" id="btnBuscar" onclick="limpiarBusqueda()" value="Limpiar" class="btn btn-primary" />
+        </div>
+        <button class="ir-arriba btn btn-primary" type="button" id="btnSubir">subir</button>
+    </div>
+</div>
+<div id="menu" class="row"><span class="text-primary">Cargando...</span></div>
+<button class="ir-arriba btn btn-primary" type="button" id="btnSubir">subir</button>
+
+<script src="~/js/PeticionesAJAX/MenuCategorias.js"></script>
