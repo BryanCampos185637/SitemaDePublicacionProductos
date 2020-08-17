@@ -83,24 +83,28 @@ namespace CompratodoUI.DAL
                 }
                 else
                 {
-                    lista = (from p in bd.Productos
-                             join c in bd.Categorias on p.Iidcategoria equals c.Iidcategoria
-                             join v in bd.Vendedores on p.Iidvendedor equals v.Iidvendedor
-                             where p.Bhabilitado == 1 && p.Nombre.Contains(nombre) && p.Estadoventa == 1
-                             select new ProductoCLS
-                             {
-                                 id = p.Iidproducto,
-                                 nombre = p.Nombre,
-                                 precio = p.Precio,
-                                 foto = p.Foto,
-                                 nombrecategoria = c.Nombre,
-                                 idcategoria = p.Iidcategoria,
-                                 descripcion = p.Descripcion == null ? "" : p.Descripcion,
-                                 nombreusuario = v.Nombre + " " + v.Apellidos,
-                                 tel = v.Telefonocelular == null ? "" : v.Telefonocelular,
-                                 correo = v.Correo == null ? "" : v.Correo,
-                                 idvendedor = (int)v.Iidvendedor
-                             }).ToList();
+                    if (nombre.Length >= 3)//solo se va a ejecutar cuando el nombre tenga 3 letras
+                    {
+                        lista = (from p in bd.Productos
+                                 join c in bd.Categorias on p.Iidcategoria equals c.Iidcategoria
+                                 join v in bd.Vendedores on p.Iidvendedor equals v.Iidvendedor
+                                 where p.Bhabilitado == 1 && p.Estadoventa == 1
+                                 && (p.Nombre.Contains(nombre) || c.Nombre.Equals(nombre))
+                                 select new ProductoCLS
+                                 {
+                                     id = p.Iidproducto,
+                                     nombre = p.Nombre,
+                                     precio = p.Precio,
+                                     foto = p.Foto,
+                                     nombrecategoria = c.Nombre,
+                                     idcategoria = p.Iidcategoria,
+                                     descripcion = p.Descripcion == null ? "" : p.Descripcion,
+                                     nombreusuario = v.Nombre + " " + v.Apellidos,
+                                     tel = v.Telefonocelular == null ? "" : v.Telefonocelular,
+                                     correo = v.Correo == null ? "" : v.Correo,
+                                     idvendedor = (int)v.Iidvendedor
+                                 }).ToList();
+                    }
                 }
             }
             lista = lista.OrderByDescending(x => x.id).ToList();

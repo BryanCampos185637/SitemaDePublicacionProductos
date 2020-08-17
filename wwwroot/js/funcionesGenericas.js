@@ -12,7 +12,7 @@
         else { inputs[i].style.borderColor = "#ccc"; }//si no esta vacio ponemos el color al estado inicial
     }
     if (rpt) { document.getElementById("mensajeVacios").innerHTML = "" }//si la respuesta es true entonces limpiamos el tag
-    else { document.getElementById("mensajeVacios").innerHTML = "<span class='text-primary'>Campos rojos requeridos...</span>"; hacerScrollHaciaArriba(); }//si esta false pintamos un mensaje
+    else { document.getElementById("mensajeVacios").innerHTML = "<span class='text-primary'>Campos requeridos...</span>"; hacerScrollHaciaArriba(); }//si esta false pintamos un mensaje
     return rpt;
 }
 

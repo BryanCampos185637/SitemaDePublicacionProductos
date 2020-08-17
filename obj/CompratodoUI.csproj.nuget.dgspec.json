@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\CompratodoUI\\CompratodoUI.csproj": {}
+    "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\docs\\CompratodoUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\CompratodoUI\\CompratodoUI.csproj": {
+    "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\docs\\CompratodoUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\CompratodoUI\\CompratodoUI.csproj",
+        "projectUniqueName": "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\docs\\CompratodoUI.csproj",
         "projectName": "CompratodoUI",
-        "projectPath": "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\CompratodoUI\\CompratodoUI.csproj",
+        "projectPath": "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\docs\\CompratodoUI.csproj",
         "packagesPath": "C:\\Users\\Bryan J. Campos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\CompratodoUI\\obj\\",
+        "outputPath": "C:\\Users\\Bryan J. Campos\\Desktop\\CatalogoProductos2\\docs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Bryan J. Campos\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -75,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

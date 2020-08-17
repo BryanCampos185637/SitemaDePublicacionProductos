@@ -22,7 +22,11 @@ var nresultados;
 var txtBuscarProducto = document.getElementById("txtBuscarProducto");
 txtBuscarProducto.onkeyup = function () {
     var parametroBusqueda = document.getElementById("txtBuscarProducto").value;
-    pintarCards("/producto/listar?nombre=" + parametroBusqueda);
+    if (parametroBusqueda.length >= 3) {//hasta que la palabra contenga 3 letras se ejecutara
+        pintarCards("/producto/listar?nombre=" + parametroBusqueda);
+    } else {//muestra los datos
+        pintarCards("/producto/listar");//agrega las cards
+    }
 }
 
 //pinta las cards
