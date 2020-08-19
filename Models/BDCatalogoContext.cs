@@ -28,8 +28,10 @@ namespace CompratodoUI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=LAPTOP-AG12FGOC; database=BDCatalogo;Integrated security=true");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.  
+                string conexionLocal = "Server=LAPTOP-AG12FGOC; database=BDCatalogo;Integrated security=true";
+                string conexionRemota = "Data Source=SQL5063.site4now.net;Initial Catalog=DB_A65937_BDCatalogo;User Id=DB_A65937_BDCatalogo_admin;Password=bryan2020";
+                optionsBuilder.UseSqlServer(conexionLocal);
             }
         }
 

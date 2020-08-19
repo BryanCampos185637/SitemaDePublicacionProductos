@@ -15,5 +15,20 @@
 </div>
 <div id="menu" class="row"><span class="text-primary">Cargando...</span></div>
 <button class="ir-arriba btn btn-primary" type="button" id="btnSubir">subir</button>
-
+<!-- Modal para ver imagen completa-->
+<div class="modal fade" id="verImagen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-center">
+                    <h3 id="nombreproducto"></h3>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="verImagenModal"><span>Cargando...</span></div>
+        </div>
+    </div>
+</div>
 <script src="~/js/PeticionesAJAX/MenuCategorias.js"></script>

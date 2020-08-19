@@ -32,3 +32,15 @@ input, textarea, select,.btn,.badge {
 .alertify-button-ok:hover {
     background: #3B7808 !important;
 }
+.card-catalogo:hover {
+    cursor: zoom-in;
+}
+.ir-arriba {
+    display: none;
+    border-radius: 30px;
+    color: white;
+    position: fixed;
+    bottom: 70px; /*baje*/
+    right: 0; /*/derecha*/
+    z-index: 100;
+}
