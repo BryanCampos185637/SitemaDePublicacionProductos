@@ -301,6 +301,7 @@ namespace CompratodoUI.DAL
         }
         #endregion
 
+        #region listar segun las categorias
         /// <summary>
         /// accion que envia la data de los productos que coincidan con el id de la categoria
         /// si el parametro nombre viene null se muestra en general, pero si viene con texto se filtra
@@ -360,5 +361,6 @@ namespace CompratodoUI.DAL
             }
             return lista;
         }
+        #endregion
     }
 }

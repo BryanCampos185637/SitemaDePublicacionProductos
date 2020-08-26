@@ -10,6 +10,16 @@ $(function () {
         }
     });
 });
+//para ver imagen en pantalla completa
+function maximizar(id) {
+    document.getElementById("nombreproducto").innerHTML = "";
+    document.getElementById("verImagenModal").innerHTML = '<span class="text-primary">Cargando...</span>';//limpiamos el modal antes por si habia una imagen antes
+    $.get("/producto/obtenerPorId?id=" + id, function (data) {//obtenemos el registro
+        document.getElementById("nombreproducto").innerHTML = data.nombre + " $" + data.precio;
+        html = "<img src='/foto_producto/" + data.foto + "' class='card-img'/>";
+        document.getElementById("verImagenModal").innerHTML = html;
+    })
+}
 function pintarMenuCategoria() {
     var html = '';
     $.get("/menu/listarCategorias", function (data) {
@@ -95,6 +105,6 @@ txtBuscarProducto.onkeyup = function () {
     }
 }
 function limpiarBusqueda() {
-    pintarCards(idCategoria);//agrega las cards
+    pintarCardsSegunIdCategoria(idCategoria);//agrega las cards
     document.getElementById("txtBuscarProducto").value = "";
 }

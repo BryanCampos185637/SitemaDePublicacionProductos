@@ -251,7 +251,7 @@ function enviar(isView) {
                     frm.append("Foto", document.getElementById("foto").src);//almacenamos la metadata de la foto
                     var fotoinput = ($("#fileFoto"))[0].files[0];//foto del file 
                     frm.append("archivo", fotoinput);
-                    EnviarInfo("/producto/guardar", frm, true);//y enviamos la data con la funcion generica
+                    EnviarInfo("/producto/guardar", frm, false);//y enviamos la data con la funcion generica
                 }
             }
         }
@@ -272,7 +272,7 @@ function enviar(isView) {
                     frm.append("Foto", $("#metaDataFotoModal").val());
                     var fotoinput = ($("#fileFotoModal"))[0].files[0];//foto del file 
                     frm.append("archivo", fotoinput);
-                    EnviarInfo("/producto/guardar", frm, false);
+                    EnviarInfo("/producto/guardar", frm, true);
                 }
             }
         }
@@ -447,6 +447,7 @@ function EnviarInfo(ruta, frm, esModal) {
     * la data que se captura de la vista y
     * si la funcion se llama en la modal o la vista de agregar
     */
+    pintarFormulario(esModal);
     $.ajax({
         url: ruta,
         type: "POST",
@@ -455,11 +456,14 @@ function EnviarInfo(ruta, frm, esModal) {
         data: frm,
         success: function (respuesta) {
             if (respuesta > 0) {
-                if (esModal == false) {
+                if (esModal) {
+                    document.getElementById("barra").classList.toggle("fin");
+                    document.getElementById("mensajeVaciosModal").innerHTML = "";
+                    document.getElementById("btnCerrarModal").click();
                     listar();
                 } else {
+                    document.getElementById("barra").classList.toggle("fin");
                     pintarFormulario();
-                    document.getElementById("btnCerrarModal").click();
                 }
                 alertify.success("Exito");
                 limpiar();
@@ -472,4 +476,17 @@ function EnviarInfo(ruta, frm, esModal) {
             }
         }
     })
+}
+//pinta una barra de progreso antes de enviar
+function pintarProgress(esModal) {
+    hacerScrollHaciaArriba();
+    var html = '';
+    html += '<div class="progress">'
+    html += '<div id="barra" class="progress-bar progress-bar-striped inicio animacionBarra" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>'
+    html += '</div>'
+    if (esModal) {
+        document.getElementById("mensajeVaciosModal").innerHTML = html;
+    } else {
+        document.getElementById("mensajeVacios").innerHTML = html;
+    }
 }
