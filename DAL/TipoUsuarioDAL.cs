@@ -138,7 +138,7 @@ namespace CompratodoUI.DAL
                     {
                         //validamos que el id que viene no sea el 1 ya que este es el admin por ende no deberia poder eliminarse
                         //o que no sea el 2 osea el vendedor
-                        if (id != 1 || id!=2)
+                        if (id > 2)
                         {
                             var data = bd.TipoUsuarios.Where(x => x.Iidtipousuario.Equals(id)).First();
                             data.Bhabilitado = 0;
