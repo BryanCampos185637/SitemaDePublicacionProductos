@@ -7,7 +7,7 @@
     for (var i = 0; i < inputs.length; i++) {
     /*validamos que el value no este vacio y si lo esta pasamos la variable a false y le cambiamos el contorno a rojo*/
         var valorInputActual = inputs[i].value;
-        //usamos trim para quitar los espacios vacios ya que una pinche tester me hizo ver que estaba mal
+        //usamos trim para quitar los espacios vacios ya que una tester me hizo ver que estaba mal
         if (valorInputActual.trim() == "") { inputs[i].style.borderColor = "red"; rpt = false; }
         else { inputs[i].style.borderColor = "#ccc"; }//si no esta vacio ponemos el color al estado inicial
     }
